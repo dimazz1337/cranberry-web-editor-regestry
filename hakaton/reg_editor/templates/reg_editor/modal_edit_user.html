@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cranberry: Редактор реестра</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/modal_edit_user/style_edit_user.css' %}">
+</head>
+<body>
+    {% include 'reg_editor/header.html' %}
+    <div class="add_user-container">
+        <form id="add_user-form">
+            <div class="form-group">
+                <label for="snils">СНИЛС:</label>
+                <input type="text" id="snils" name="snils" required>
+            </div>
+
+            <script src="https://unpkg.com/imask"></script>
+            <script>
+                const element = document.getElementById('snils');
+                const maskOptions = {
+                  mask: '000-000-000 00',
+                    lazy: false
+                };
+                const mask = IMask(element, maskOptions);
+            </script>
+
+            <div class="form-group">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="surname">Фамилия:</label>
+                <input type="text" id="surname" name="surname" required>
+            </div>
+            <div class="form-group">
+                <label for="patronymic">Отчество:</label>
+                <input type="text" id="patronymic" name="patronymic" required>
+            </div>
+            <div class="form-group">
+                <label for="birthdate">Дата рождения:</label>
+                <input type="date" id="birthdate" name="birthdate" required>
+            </div>
+             <div class="form-group">
+                <label for="category">Категория:</label>
+                <select id="category" name="category" required>
+                    <option value="option3">Школьник</option>
+                    <option value="option1">Студент</option>
+                    <option value="option2">Пенсионер</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date-end-category">Действие категории до:</label>
+                <input type="date" id="date-end-category" name="date-end-category" required>
+            </div>
+
+
+        </form>
+        <button type="submit" class="edit-button">Сохранить</button>
+    </div>
+
+</body>
+</html>

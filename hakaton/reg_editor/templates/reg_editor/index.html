@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <title>Форма авторизации</title>
+</head>
+<body>
+    <h5 id="transfer-link"><u><a href="panel_re_editor">Перейти в редактор реестра</a></u></h5>
+
+    <div class="canvas-box"></div>
+    <script type="text/javascript" src="{% static 'js/np_stars.js' %}"></script>
+    <div class="container">
+        <div class="image-container">
+          <img src="{% static 'images/1234.png' %}" alt="Изображение">
+       </div>
+        <h1 class="company-name">Сranberry: редактор реестра</h1>
+        <div class="login-form">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="login">Логин</label>
+                    <input type="text" id="login" name="login" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="remember_check" name="remember">
+                    <label for="remember" id="remember_text">Запомнить меня</label>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Войти</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

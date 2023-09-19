@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cranberry: Редактор реестра</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/panel_account/style_account.css' %}">
+</head>
+<body>
+    {% include 'reg_editor/header.html' %}
+    <div class="profile-container">
+        <img src="{% static 'images/user_ico.png' %}" alt="User Profile" class="profile-picture">
+        <h1 class="user-name">Бурдунин Егор</h1>
+        <div class="user-info">
+            <p><span class="info-label">Дата рождения:</span> 04.11.2001</p>
+            <p><span class="info-label">Город:</span> Москва</p>
+            <p><span class="info-label">Должность:</span> Web-Developer</p>
+            <div class="access-lvl" id="access-lvl">
+                <b>Уровень доступа:</b> A1 (Администратор)
+                <div class="tooltip"> <br>A1 - Администратор</br><br>А2 - Редактирование</br><br>А3 - Просмотр</br></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

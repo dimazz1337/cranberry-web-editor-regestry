@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cranberry: Редактор реестра</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/panel_re_editor/style.css' %}">
+
+</head>
+<body>
+    {% include 'reg_editor/header.html' %}
+
+    <div class="content">
+        <div class="header">
+            <div></div>
+        <div class="search-container">
+            <a href="/add_user" id="add-button">Добавить</a>
+                <script src="{% static 'js/add_button_db.js' %}"></script>
+            <button id="save-button" style="display: none;">Сохранить</button>
+                <script src="{% static 'js/save_button_db.js' %}"></script>
+            <input type="text" id="search-input" placeholder="Поиск...">
+            <button id="search-button"><img src="{% static 'images/icon_search.png' %}" alt="Поиск"></button>
+                <script src="{% static 'js/search_button_db.js' %}"></script>
+        </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">UID</th>
+                    <th scope="col">СНИЛС</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Отчество</th>
+                    <th scope="col">Дата рождения</th>
+                    <th scope="col">Текущая категория</th>
+                    <th scope="col">Действие категории до</th>
+                    <th scope="col">Последнее изменение</th>
+                    <th scope="col" class="actions-column">Del</th>
+                    <th scope="col" class="actions-column">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in page %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.uid }}</td>
+                        <td contenteditable="true">{{ user.snils }}</td>
+                        <td contenteditable="true">{{ user.name }}</td>
+                        <td contenteditable="true">{{ user.surname }}</td>
+                        <td contenteditable="true">{{ user.patronymic }}</td>
+                        <td>{{ user.birthday }}</td>
+                        <td contenteditable="true">{{ user.current_category }}</td>
+                        <td contenteditable="true">{{ user.date_end_category }}</td>
+                        <td>{{ user.last_change }}</td>
+
+                        <td><button class="delete-button">✖</button></td>
+                        <td><a href="/edit_user" class="edit-button" id="edit-button">✏️</a></td>
+
+
+                            <!-- кнопки удаления -->
+                            <script src="{% static 'js/del_button_db.js' %}"></script>
+                            <script src="{% static 'js/edit_button_db.js' %}"></script>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page.has_previous %}
+                        <a href="?page=1" class="page-link"><<</a>
+                        <a href="?page={{ page.previous_page_number }}" class="page-link">←</a>
+                    {% endif %}
+
+
+                    {% for page_num in page.paginator.page_range %}
+                        {% if page_num == page.number %}
+                            <span class="current-page">{{ page_num }}</span>
+                        {% else %}
+                            <a href="?page={{ page_num }}" class="page-link">{{ page_num }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page.has_next %}
+                        <a href="?page={{ page.next_page_number }}" class="page-link">→</a>
+                        <a href="?page={{ page.paginator.num_pages }}" class="page-link">>></a>
+                    {% endif %}
+                </span>
+            </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../../fonts/GitLabSans.woff2?v=3.19") format("woff2"),
+       url("../../fonts/GitLabSans.woff?v=3.19") format("woff");
+}
+
+@font-face {
+  font-family: 'InterLight';
+  font-style:  normal;
+  font-weight: 480;
+  font-display: swap;
+  src: url("../../fonts/GitLabSans.woff2?v=3.19") format("woff2"),
+       url("../../fonts/GitLabSans.woff?v=3.19") format("woff");
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font-family: Inter, sans-serif;
+}
+
+.logo-picture {
+    margin-left: 20px;
+    width: 60px;
+    height: 55px;
+    position: relative;  
+
+}
+
+#logo-text {
+    font-family: "Inter", serif-sans;
+    letter-spacing: 2px;
+    position: absolute;  
+
+    left: 70px;  
+
+    top: 3px;  
+
+    padding: 8px;
+    font-size: 20px;
+    margin-left: 10px;  
+
+    z-index: 1;
+}
+
+
+.sidebar {
+    background: linear-gradient(to right, #65CF84, #C0F080, #87E8AA, #5ED0CA, #3BA3D6, #2F6EC5, #4054B9, #5142AF, #6339A0, #52448C);
+    color: #142D3D;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 30px;
+    order: 1;
+    display: flex;
+    justify-content: space-between;  
+
+    align-items: center;  
+
+    margin-bottom: 15px;
+}
+
+
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;  
+
+}
+
+.sidebar ul li {
+    margin-left: 15px;  
+
+}
+
+.sidebar ul li:first-child {
+    margin-left: 0;  
+
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+ 
+
+.button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: transparent;  
+
+    color: #FFF;  
+
+    text-decoration: none;  
+
+    border: none;  
+
+    border-radius: 5px;  
+
+
+    transition: background-color 0.3s;  
+
+}
+
+.button.active {
+    background-color: #8888C4;  
+
+}
+
+.button:hover {
+    background-color: #8888C4;  
+
+    transition: background-color 0.3s;  
+
+}
+
+ 
+
+.sidebar ul li:not(:last-child) a.button:hover {
+    color: #FFF;  
+
+}
+
+ 
+
+.sidebar ul li:last-child a.button:hover {
+    background-color: #C9373A;  
+
+}
+
+

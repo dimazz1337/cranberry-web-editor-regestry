@@ -1,0 +1,344 @@
+syntax = "proto3";
+
+package cmd;
+
+option go_package = "./internal/genCranberryAppController/";
+
+message Info{
+  uint64 id = 1;
+  string uid = 2;
+  string snils = 3;
+  string name = 4;
+  string surname = 5;
+  string patronymic = 6;
+  string birthday = 7;
+  string category = 8;
+  string dateEnd = 9;
+  string last_change = 10;
+}
+
+message Statistic {
+  string uid = 1;
+  string time = 2;
+}
+
+service ControllerApp{
+  rpc Auth(authInfo) returns (authInfoResponse);
+  rpc GetFullInfo(RequestGetFullInfo) returns (GetFullInfoResponse);
+  rpc GetInfo(RequestGetInfo) returns (GetInfoResponse);
+
+  rpc AddNewInfo(RequestAddNewInfo) returns (AddNewInfoResponse);
+  rpc ChangeRoute(RequestChangeRoute) returns (ChangeRouteResponse);
+  rpc OpenShift(RequestOpenShift) returns (OpenShiftResponse);
+  rpc CloseShift(RequestCloseShift) returns (CloseShiftResponse);
+  rpc AddStatistic(RequestAddStatistic) returns (AddStatisticResponse);
+  rpc MakeComplaint (RequestMakeComplaint) returns (complaintResponse);
+  rpc GetTable(RequestGetTable) returns (GetTableResponse);
+}
+
+message RequestGetInfo {
+  string token = 1;
+  string idControllerApp = 2;
+  string uid = 3;
+}
+
+message GetInfoResponse {
+  Info info = 1;
+  optional string changeStatusAccount = 2;
+}
+
+message RequestAddNewInfo {
+  string token = 1;
+  string idControllerApp = 2;
+  string time = 3;
+}
+
+message AddNewInfoResponse{
+  repeated Info info = 1;
+  optional string changeStatusAccount = 2;
+}
+
+message RequestMakeComplaint {
+  string token = 1;
+  string idControllerApp = 2;
+  Info info = 3;
+  string phone = 4;
+}
+
+message complaintResponse {
+  optional string error = 1;
+  optional string changeStatusAccount = 2;
+}
+
+message RequestCloseShift {
+  string token = 1;
+  string idControllerApp = 2;
+}
+
+message CloseShiftResponse {
+  optional string error = 1;
+  optional string changeStatusAccount = 2;
+}
+
+message RequestAddStatistic{
+  string token = 1;
+  string idControllerApp = 2;
+  repeated Statistic statistic = 3 ;
+}
+
+message AddStatisticResponse{
+  optional  string error = 1;
+  optional string changeStatusAccount = 2;
+}
+
+message RequestOpenShift {
+  string token = 1;
+  string idControllerApp = 2;
+  string geoposition = 3;
+}
+
+message OpenShiftResponse{
+  optional string error = 1;
+  optional string changeStatusAccount = 2;
+}
+
+message RequestChangeRoute{
+  string token = 1;
+  string idControllerApp = 2;
+  string newRoute = 3;
+}
+
+message ChangeRouteResponse{
+  string error = 1;
+  optional string changeStatusAccount = 2;
+}
+
+message authInfo{
+  string login = 1;
+  string password = 2;
+}
+
+message authInfoResponse{
+  string token = 1;
+}
+
+message GetTableResponse{
+  bytes table = 1;
+  optional string changeStatusAccount = 2;
+}
+
+message RequestGetFullInfo {
+  string token = 1;
+  string idControllerApp = 2;
+}
+
+message RequestGetTable {
+  string idControllerApp = 1;
+  bytes table = 2;
+  optional string changeStatusAccount = 3;
+}
+
+message GetFullInfoResponse {
+  repeated Info info = 1;
+  optional string changeStatusAccount = 2;
+}
+
+
+service EditorRegistry{
+  rpc GetNRowsRegistry(RequestGetNRowsRegistry) returns (GetNRowsRegistryResponse);
+  rpc RemoveRowRegistryTable(RequestRemoveRegistry) returns (RegistryRemoveResponse);
+  rpc EditRowRegistry(RequestEditAddRowRegistry) returns (RegistryEditAddResponse);
+  rpc AddRowRegistry(RequestEditAddRowRegistry) returns (RegistryAddRowResponse);
+  rpc FindBy(RequestFindBySRegistry) returns (RegistryFindResponse);
+
+  rpc GetNRowsUserGroups (RequestGetUserGroups) returns (GetNRowsUserGroupsResponse);
+
+  rpc GetNRowsCategories (RequestGetNRowsCategories) returns (GetNRowsCategoriesResponse);
+  rpc AddCategory (RequestAddCategory) returns (AddCategoryResponse);
+  rpc RemoveCategory (RequestRemoveCategory) returns (RemoveCategoryResponse);
+
+  rpc GetNRowsControllers(RequestGetNRowsControllers) returns (GetNRowsControllersResponse);
+  rpc AddController (RequestAddController) returns (AddControllerResponse);
+  rpc RemoveController (RequestRemoveController) returns (RemoveControllerResponse);
+  rpc ChangeStatusController (RequestChangeStatusController) returns (ChangeStatusControllerResponse);
+
+  rpc Auth(authInfo) returns (authInfoResponse);
+  rpc RegUser(RequestRegUser) returns (RegUserResponse);
+}
+
+message RequestChangeStatusController{
+  string token = 1;
+  Controllers controller = 2;
+}
+
+message ChangeStatusControllerResponse{
+  optional string error = 1;
+}
+
+message AuthUser{
+  string username = 1;
+  string password = 2;
+  string first_name = 3;
+  string last_name = 4;
+  int64 user_group = 5;
+}
+
+
+message RequestRegUser {
+  string token = 1;
+  AuthUser user_data = 2;
+}
+
+message RegUserResponse{
+  optional string error = 1;
+}
+
+message RequestRemoveController {
+  string token = 1;
+  uint64 id = 2;
+}
+
+message RemoveControllerResponse {
+  optional string error = 1;
+}
+
+
+message RequestAddController{
+  string token = 1;
+  Controllers controller = 2;
+}
+
+message AddControllerResponse{
+  optional string error = 1;
+}
+
+message RequestRemoveCategory {
+  string token = 1;
+  uint64 id = 2;
+}
+
+message RemoveCategoryResponse {
+  optional string error = 1;
+}
+
+message RequestAddCategory {
+  string token = 1;
+  Categories category = 2;
+}
+
+message AddCategoryResponse {
+  optional string error = 1;
+}
+
+
+message UserGroups {
+  uint64 id = 1;
+  uint64 user_id = 2;
+  uint64 group_id = 3;
+}
+
+//message RequestGNRows {
+//  string token = 1;
+//  uint64 fromN = 2;
+//  uint64 toN = 3;
+//  optional bool sort = 4;
+//}
+
+message RequestGetNRowsControllers{
+  string token = 1;
+  uint64 fromN = 2;
+  uint64 toN = 3;
+  optional bool sort = 4;
+}
+
+
+message Controllers {
+  uint64 controller_id = 1;
+  uint64 auth_id = 2;
+  string status = 3;
+}
+message GetNRowsControllersResponse{
+  repeated Controllers controllers = 1;
+  optional string changeStatusAccount = 2;
+  int64 NumberRows = 3;
+}
+
+message RequestGetNRowsCategories{
+  string token = 1;
+  uint64 fromN = 2;
+  uint64 toN = 3;
+  optional bool sort = 4;
+}
+
+message Categories{
+  uint64 id = 1;
+  string category_name = 2;
+}
+
+message GetNRowsCategoriesResponse{
+  repeated Categories categories = 1;
+  optional string changeStatusAccount = 2;
+  int64 NumberRows = 3;
+}
+
+
+message RequestGetUserGroups {
+  string token = 1;
+  uint64 fromN = 2;
+  uint64 toN = 3;
+  optional bool sort = 4;
+}
+
+message GetNRowsUserGroupsResponse{
+  repeated UserGroups user_group = 1;
+  optional string changeStatusAccount = 2;
+  int64 NumberRows = 3;
+}
+
+message RegistryRemoveResponse{
+  optional string error = 1;
+  optional string changeStatusAccount = 2;
+}
+
+message RequestFindBySRegistry {
+  string token = 1;
+  Info info = 2;
+}
+
+message RegistryFindResponse {
+  repeated Info info = 1;
+  optional string changeStatusAccount = 2;
+}
+
+message RegistryAddRowResponse {
+  optional string error = 1;
+  optional string changeStatusAccount = 2;
+}
+
+message RequestEditAddRowRegistry {
+  string token = 1;
+  Info info = 2;
+}
+
+message RequestRemoveRegistry {
+  string token = 1;
+  uint64 id = 2;
+}
+
+message RegistryEditAddResponse {
+  optional string error = 1;
+  optional string changeStatusAccount = 2;
+}
+
+message RequestGetNRowsRegistry {
+  string token = 1;
+  uint64 fromN = 2;
+  uint64 toN = 3;
+  optional bool sort = 4;
+}
+
+message GetNRowsRegistryResponse{
+  repeated Info info = 1;
+  optional string changeStatusAccount = 2;
+  int64 NumberRows = 3;
+}
