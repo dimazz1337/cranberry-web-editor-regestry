@@ -1,4 +1,4 @@
-# cranberry-web-editor-regestry
+# Web редактор реестра на Django Python
 
 1. Установить библиотеки из файла requirements.txt
 2. Активировать виртуальное окружение проекта
